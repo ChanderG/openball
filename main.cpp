@@ -20,7 +20,7 @@ void displayMe(void)
   p.movePaddle(mouseX,0);
   p.drawPaddle();
 
-  b.moveBall();
+  b.moveBall(p);
   b.drawBall();
 
   glFlush();

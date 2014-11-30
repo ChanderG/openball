@@ -30,6 +30,17 @@ void paddle :: movePaddle(int x, int y){
   return;
 }
 
+
+float paddle ::  getLeft(){
+  return left;
+}  
+float paddle :: getRight(){
+  return right;
+}
+float paddle :: getTop(){
+  return top;
+}
+
 ball :: ball(float cX, float cY, float hs){
   centerX = cX;
   centerY = cY;
@@ -51,9 +62,13 @@ void ball :: drawBall(){
   return;
 }
 
-void ball :: moveBall(){
+void ball :: moveBall(paddle p){
   if((centerX <= -1.0) || (centerX >= 1.0)) velX *= -1; 
   if((centerY <= -1.0) || (centerY >= 1.0)) velY *= -1; 
+
+  if((centerX >= p.getLeft()) && (centerX <= p.getRight()) && ((centerY - halfside) <= p.getTop())){
+    velY *= -1;
+  }
 
   centerX += velX;
   centerY += velY;

@@ -12,6 +12,10 @@ class paddle{
 
   void drawPaddle();
   void movePaddle(int, int);
+
+  float getLeft();
+  float getRight();
+  float getTop();
 };
 
 class ball{
@@ -22,5 +26,5 @@ class ball{
   ball(float centerX, float centerY, float halfside);
 
   void drawBall();
-  void moveBall();
+  void moveBall(paddle p);
 };
