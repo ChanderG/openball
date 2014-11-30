@@ -30,3 +30,20 @@ void paddle :: movePaddle(int x, int y){
   return;
 }
 
+ball :: ball(float cX, float cY, float hs){
+  centerX = cX;
+  centerY = cY;
+  halfside = hs;
+}
+
+void ball :: drawBall(){
+  glBegin(GL_POLYGON);
+
+  glVertex2f(centerX-halfside, centerY-halfside);
+  glVertex2f(centerX+halfside, centerY-halfside);
+  glVertex2f(centerX+halfside, centerY+halfside);
+  glVertex2f(centerX-halfside, centerY+halfside);
+
+  glEnd();
+  return;
+}

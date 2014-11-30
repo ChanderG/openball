@@ -9,20 +9,18 @@ using namespace std;
 paddle p(-0.15, -0.9, 0.15, -0.95);
 //x coordinate of mouse
 int mouseX;
+// Main Ball
+ball b(0, 0, 0.05); 
 
 //game screen graphics
 void displayMe(void)
 {
   glClear(GL_COLOR_BUFFER_BIT);
-  glBegin(GL_POLYGON);
-  glVertex3f(0.0, 0.0, 0.0);
-  glVertex3f(0.5, 0.0, 0.0);
-  glVertex3f(0.5, 0.5, 0.0);
-  glVertex3f(0.0, 0.5, 0.0);
-  glEnd();
 
   p.movePaddle(mouseX,0);
   p.drawPaddle();
+
+  b.drawBall();
 
   glFlush();
 }
