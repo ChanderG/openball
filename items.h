@@ -1,4 +1,8 @@
 //class defining the user controlled paddle
+
+const int WIDTH = 1200;
+const int HEIGHT = 700;
+
 class paddle{
   float left, top, right, bottom;
   float length;
@@ -12,9 +16,11 @@ class paddle{
 
 class ball{
   float centerX, centerY, halfside;
+  float velX, velY;
 
   public:
   ball(float centerX, float centerY, float halfside);
 
   void drawBall();
+  void moveBall();
 };

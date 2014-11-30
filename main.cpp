@@ -20,13 +20,14 @@ void displayMe(void)
   p.movePaddle(mouseX,0);
   p.drawPaddle();
 
+  b.moveBall();
   b.drawBall();
 
   glFlush();
 }
 
 void getMouseCoordinates(int x, int y){
-  mouseX = x-600;
+  mouseX = x-WIDTH/2;
 }
 
 void timer(int t){
@@ -37,7 +38,7 @@ int main(int argc, char** argv)
 {
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_SINGLE);
-  glutInitWindowSize(1200, 700);
+  glutInitWindowSize(WIDTH, HEIGHT);
   glutInitWindowPosition(0, 0);
   glutCreateWindow("OpenBall");
 
@@ -45,7 +46,6 @@ int main(int argc, char** argv)
   glutIdleFunc(displayMe);
   glutTimerFunc(1, timer, 1);
   glutPassiveMotionFunc(getMouseCoordinates);
-  //glutMouseFunc(getMouseCoordinates);
 
   glutMainLoop();
   return 0;

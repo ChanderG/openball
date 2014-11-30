@@ -34,6 +34,9 @@ ball :: ball(float cX, float cY, float hs){
   centerX = cX;
   centerY = cY;
   halfside = hs;
+  
+  velX = 0.001;
+  velY = 0.001;
 }
 
 void ball :: drawBall(){
@@ -46,4 +49,12 @@ void ball :: drawBall(){
 
   glEnd();
   return;
+}
+
+void ball :: moveBall(){
+  if((centerX <= -1.0) || (centerX >= 1.0)) velX *= -1; 
+  if((centerY <= -1.0) || (centerY >= 1.0)) velY *= -1; 
+
+  centerX += velX;
+  centerY += velY;
 }
