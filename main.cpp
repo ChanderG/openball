@@ -11,6 +11,10 @@ paddle p(-0.15, -0.9, 0.15, -0.95);
 int mouseX;
 // Main Ball
 ball b(0, 0, 0.05); 
+//Main map
+int main_map[10][10];
+map m;    
+
 
 //game screen graphics
 void displayMe(void)
@@ -20,8 +24,10 @@ void displayMe(void)
   p.movePaddle(mouseX,0);
   p.drawPaddle();
 
-  b.moveBall(p);
+  b.moveBall(p, m);
   b.drawBall();
+
+  m.drawMap();
 
   glFlush();
 }
@@ -42,6 +48,13 @@ int main(int argc, char** argv)
   glutInitWindowPosition(0, 0);
   glutCreateWindow("OpenBall");
 
+  for(int i = 0;i < 10;i++)
+    for(int j = 0;j < 10;j++)
+      if (i == j) main_map[i][j] = 1;
+      else main_map[i][j] = 0;
+
+  m.createMap(main_map,0.2, 0.1);
+
   glutDisplayFunc(displayMe);
   glutIdleFunc(displayMe);
   glutTimerFunc(1, timer, 1);
@@ -50,3 +63,4 @@ int main(int argc, char** argv)
   glutMainLoop();
   return 0;
 }
+

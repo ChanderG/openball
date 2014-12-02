@@ -62,7 +62,7 @@ void ball :: drawBall(){
   return;
 }
 
-void ball :: moveBall(paddle p){
+void ball :: moveBall(paddle p, map m){
   if((centerX <= -1.0) || (centerX >= 1.0)) velX *= -1; 
   if((centerY <= -1.0) || (centerY >= 1.0)) velY *= -1; 
 
@@ -72,4 +72,47 @@ void ball :: moveBall(paddle p){
 
   centerX += velX;
   centerY += velY;
+}
+
+//right now just copies the matrix
+//need to add the ability to read from a file or have an inbuilt level editor
+map :: map(int s[10][10], float l, float w){
+  for(int i = 0;i<10;i++)
+    for(int j = 0;j<10;j++)
+      slots[i][j] = s[i][j];
+  length = l;
+  width = w;
+}
+  
+map :: map(){
+
+}
+
+void map :: createMap(int s[10][10], float l, float w){
+  for(int i = 0;i<10;i++)
+    for(int j = 0;j<10;j++)
+      slots[i][j] = s[i][j];
+  length = l;
+  width = w;
+}
+
+void map :: drawMap(){
+  float cornerX = -1.0;
+  float cornerY = 1.0;
+
+  for(int i = 0;i<10;i++)
+    for(int j = 0;j<10;j++){
+      if(slots[i][j] == 0) continue;
+     
+      //basically drawing a brick
+      //more information may be added later on in this grid
+      glBegin(GL_POLYGON);
+      glVertex2f(cornerX + j*length, cornerY - i*width);
+      glVertex2f(cornerX + (j+1)*length, cornerY - i*width);
+      glVertex2f(cornerX + (j+1)*length, cornerY - (i+1)*width);
+      glVertex2f(cornerX + j*length, cornerY - (i+1)*width);
+      glEnd();
+
+    }
+  return;
 }

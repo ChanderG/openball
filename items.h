@@ -18,6 +18,18 @@ class paddle{
   float getTop();
 };
 
+class map{
+  int slots[10][10];  //right now boolean to show presence/absence of brick
+  float length, width;
+
+  public:
+  map(int slots[10][10], float length, float width);
+  map();  
+
+  void createMap(int slots[10][10], float length, float width);
+  void drawMap();
+};
+
 class ball{
   float centerX, centerY, halfside;
   float velX, velY;
@@ -26,5 +38,5 @@ class ball{
   ball(float centerX, float centerY, float halfside);
 
   void drawBall();
-  void moveBall(paddle p);
+  void moveBall(paddle p,map m);
 };
