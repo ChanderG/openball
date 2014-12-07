@@ -28,6 +28,10 @@ class map{
 
   void createMap(int slots[10][10], float length, float width);
   void drawMap();
+  float getLength();
+  float getWidth();
+  //update condition of block
+  int updateBlock(int i,int j, int status);
 };
 
 class ball{
@@ -38,5 +42,5 @@ class ball{
   ball(float centerX, float centerY, float halfside);
 
   void drawBall();
-  void moveBall(paddle p,map m);
+  void moveBall(paddle p,map* m);
 };

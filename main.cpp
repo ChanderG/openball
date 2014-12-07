@@ -24,7 +24,7 @@ void displayMe(void)
   p.movePaddle(mouseX,0);
   p.drawPaddle();
 
-  b.moveBall(p, m);
+  b.moveBall(p, &m);
   b.drawBall();
 
   m.drawMap();
@@ -48,6 +48,7 @@ int main(int argc, char** argv)
   glutInitWindowPosition(0, 0);
   glutCreateWindow("OpenBall");
 
+  //map formula hardcoded here for now  
   for(int i = 0;i < 10;i++)
     for(int j = 0;j < 10;j++)
       if (i == j) main_map[i][j] = 1;

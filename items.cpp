@@ -62,14 +62,27 @@ void ball :: drawBall(){
   return;
 }
 
-void ball :: moveBall(paddle p, map m){
+void ball :: moveBall(paddle p, map* m){
+  //collide with walls
   if((centerX <= -1.0) || (centerX >= 1.0)) velX *= -1; 
   if((centerY <= -1.0) || (centerY >= 1.0)) velY *= -1; 
 
+  //collide with paddle
   if((centerX >= p.getLeft()) && (centerX <= p.getRight()) && ((centerY - halfside) <= p.getTop())){
     velY *= -1;
   }
+  
+  //collide with bricks
+  //hardcoded number of bricks
+  int J = (1.0 + centerX)/m->getLength();
+  int I = -1*(-1.0 + centerY)/m->getWidth();
 
+  //if there is a block there
+  if(m->updateBlock(I, J, 0) == 1){
+    velY *= -1;   
+  }
+
+  //move ball
   centerX += velX;
   centerY += velY;
 }
@@ -102,17 +115,39 @@ void map :: drawMap(){
 
   for(int i = 0;i<10;i++)
     for(int j = 0;j<10;j++){
-      if(slots[i][j] == 0) continue;
-     
-      //basically drawing a brick
-      //more information may be added later on in this grid
-      glBegin(GL_POLYGON);
-      glVertex2f(cornerX + j*length, cornerY - i*width);
-      glVertex2f(cornerX + (j+1)*length, cornerY - i*width);
-      glVertex2f(cornerX + (j+1)*length, cornerY - (i+1)*width);
-      glVertex2f(cornerX + j*length, cornerY - (i+1)*width);
-      glEnd();
+      if(slots[i][j] == 0);
+      else{ 
+	//basically drawing a brick
+	//more information may be added later on in this grid
+	glBegin(GL_POLYGON);
+	glVertex2f(cornerX + j*length, cornerY - i*width);
+	glVertex2f(cornerX + (j+1)*length, cornerY - i*width);
+	glVertex2f(cornerX + (j+1)*length, cornerY - (i+1)*width);
+	glVertex2f(cornerX + j*length, cornerY - (i+1)*width);
+	glEnd();
+      }
 
     }
   return;
+}
+
+float map :: getLength(){
+  return length;
+}
+
+float map :: getWidth(){
+  return width;
+}
+
+//returns 0 if there never was any block there in the first place
+//returns 1 iff a block has been collided with
+int map :: updateBlock(int i,int j, int status){
+  if((i >= 0) && (j >= 0) && (i < 10) && (j < 10)){
+    if(slots[i][j] == 0) return 0;
+    slots[i][j] = status;  
+  }
+  else{
+    return 0;
+  }
+  return 1;
 }
