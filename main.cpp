@@ -4,22 +4,32 @@ using namespace std;
 #include<GL/freeglut.h>
 
 #include"items.h"
+#include"tools.h"
 
 // Main Paddle 
 paddle p(-0.15, -0.9, 0.15, -0.95);
+
 //x coordinate of mouse
 int mouseX;
+
 // Main Ball
 ball b(0, 0, 0.05); 
+
 //Main map
+//matrix representation of a map
 int main_map[10][10];
+//actual map object
 map m;    
 
+//lives left
+int lives = 3;
 
 //game screen graphics
 void displayMe(void)
 {
   glClear(GL_COLOR_BUFFER_BIT);
+
+  displayScore(lives);  
 
   p.movePaddle(mouseX,0);
   p.drawPaddle();
@@ -60,6 +70,8 @@ int main(int argc, char** argv)
   glutIdleFunc(displayMe);
   glutTimerFunc(1, timer, 1);
   glutPassiveMotionFunc(getMouseCoordinates);
+
+  //glutStrokeCharacter(GLUT_STROKE_ROMAN, 'a');
 
   glutMainLoop();
   return 0;
