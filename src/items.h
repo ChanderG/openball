@@ -55,4 +55,5 @@ class ball{
   void moveBall(paddle p,map* m, int& lives);
 
   void resetBall();
+  void launchBall();
 };

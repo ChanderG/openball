@@ -3,8 +3,10 @@ using namespace std;
 
 #include<GL/freeglut.h>
 
+#include"main.h"
 #include"items.h"
 #include"tools.h"
+#include"io.h"
 
 // Main Paddle 
 paddle p(-0.15, -0.9, 0.15, -0.95);
@@ -12,7 +14,7 @@ paddle p(-0.15, -0.9, 0.15, -0.95);
 //x coordinate of mouse
 int mouseX;
 
-// Main Ball
+//main ball
 ball b(0, 0, 0.05); 
 
 //Main map
@@ -23,6 +25,10 @@ map m;
 
 //lives left
 int lives = 3;
+
+//global state indicator
+//0 implies in paused state
+int state = 0;
 
 //game screen graphics
 void displayMe(void)
@@ -72,9 +78,9 @@ int main(int argc, char** argv)
   glutDisplayFunc(displayMe);
   glutIdleFunc(displayMe);
   glutTimerFunc(1, timer, 1);
-  glutPassiveMotionFunc(getMouseCoordinates);
 
-  //glutStrokeCharacter(GLUT_STROKE_ROMAN, 'a');
+  glutPassiveMotionFunc(getMouseCoordinates);
+  glutMouseFunc(handleMouseClick);
 
   glutMainLoop();
   return 0;

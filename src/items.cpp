@@ -57,8 +57,11 @@ ball :: ball(float cX, float cY, float hs){
   initCy = centerY = cY;
   halfside = hs;
   
-  initVelX = velX = 0.001;
-  initVelY = velY = 0.001;
+  //initVelX = velX = 0.001;
+  //initVelY = velY = 0.001;
+
+  initVelX = 0.001;
+  initVelY = 0.001;
 }
 
 void ball :: drawBall(){
@@ -117,9 +120,17 @@ void ball :: resetBall(){
   centerX = initCx;
   centerY = initCy;
 
+  //velX = initVelX;
+  //velY = initVelY;
+
+  velX = velY = 0;
+}
+
+void ball :: launchBall(){
   velX = initVelX;
   velY = initVelY;
 }
+
 
 //right now just copies the matrix
 //need to add the ability to read from a file or have an inbuilt level editor
