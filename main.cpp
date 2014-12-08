@@ -34,7 +34,7 @@ void displayMe(void)
   p.movePaddle(mouseX,0);
   p.drawPaddle();
 
-  b.moveBall(p, &m);
+  b.moveBall(p, &m, lives);
   b.drawBall();
 
   m.drawMap();

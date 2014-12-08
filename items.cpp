@@ -42,12 +42,12 @@ float paddle :: getTop(){
 }
 
 ball :: ball(float cX, float cY, float hs){
-  centerX = cX;
-  centerY = cY;
+  initCx = centerX = cX;
+  initCy = centerY = cY;
   halfside = hs;
   
-  velX = 0.001;
-  velY = 0.001;
+  initVelX = velX = 0.001;
+  initVelY = velY = 0.001;
 }
 
 void ball :: drawBall(){
@@ -62,10 +62,23 @@ void ball :: drawBall(){
   return;
 }
 
-void ball :: moveBall(paddle p, map* m){
+void ball :: moveBall(paddle p, map* m, int& lives){
   //collide with walls
-  if((centerX <= -1.0) || (centerX >= 1.0)) velX *= -1; 
-  if((centerY <= -1.0) || (centerY >= 1.0)) velY *= -1; 
+  if((centerX <= -1.0) || (centerX >= 1.0)){
+    velX *= -1; 
+  }  
+  if((centerY >= 1.0)){ 
+    velY *= -1; 
+  }
+  
+  //collide with floor => reset ball and decrement life
+  if(centerY <= -1.0){
+    //totally reset position and velocity
+    resetBall();
+    //decrement life count
+    lives -= 1;
+    return;
+  }
 
   //collide with paddle
   if((centerX >= p.getLeft()) && (centerX <= p.getRight()) && ((centerY - halfside) <= p.getTop())){
@@ -85,6 +98,15 @@ void ball :: moveBall(paddle p, map* m){
   //move ball
   centerX += velX;
   centerY += velY;
+}
+
+void ball :: resetBall(){
+  //reset from init values
+  centerX = initCx;
+  centerY = initCy;
+
+  velX = initVelX;
+  velY = initVelY;
 }
 
 //right now just copies the matrix

@@ -38,9 +38,17 @@ class ball{
   float centerX, centerY, halfside;
   float velX, velY;
 
+  //initial values needed to revive ball
+  float initCx, initCy, initVelX, initVelY;
+
   public:
   ball(float centerX, float centerY, float halfside);
 
   void drawBall();
-  void moveBall(paddle p,map* m);
+
+  //the most important function
+  //all physics occurs here
+  void moveBall(paddle p,map* m, int& lives);
+
+  void resetBall();
 };
