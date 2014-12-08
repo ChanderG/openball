@@ -10,6 +10,8 @@ paddle :: paddle(float l,float t,float r,float b){
   right = r;
   bottom = b;
   length = r - l;
+
+  delta = 0.0;
 }
 
 void paddle::drawPaddle(){
@@ -25,8 +27,13 @@ void paddle::drawPaddle(){
 }
 
 void paddle :: movePaddle(int x, int y){
+  delta = (left + right)/2;
+
   left = x/600.0 - length/2.0;
   right = x/600.0 + length/2.0;
+
+  delta -= (left + right)/2;
+
   return;
 }
 
@@ -39,6 +46,10 @@ float paddle :: getRight(){
 }
 float paddle :: getTop(){
   return top;
+}
+
+float paddle :: getDelta(){
+  return delta;
 }
 
 ball :: ball(float cX, float cY, float hs){
@@ -83,6 +94,7 @@ void ball :: moveBall(paddle p, map* m, int& lives){
   //collide with paddle
   if((centerX >= p.getLeft()) && (centerX <= p.getRight()) && ((centerY - halfside) <= p.getTop())){
     velY *= -1;
+    centerX += p.getDelta();
   }
   
   //collide with bricks

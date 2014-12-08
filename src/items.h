@@ -7,6 +7,9 @@ class paddle{
   float left, top, right, bottom;
   float length;
 
+  //imparting x momentum to ball
+  float delta;
+
   public:
   paddle(float left,float top,float right,float bottom);  
 
@@ -16,6 +19,7 @@ class paddle{
   float getLeft();
   float getRight();
   float getTop();
+  float getDelta();
 };
 
 class map{
