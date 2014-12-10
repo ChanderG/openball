@@ -81,6 +81,7 @@ int main(int argc, char** argv)
 
   glutPassiveMotionFunc(getMouseCoordinates);
   glutMouseFunc(handleMouseClick);
+  glutKeyboardFunc(handleKeyboardInputs);
 
   glutMainLoop();
   return 0;
