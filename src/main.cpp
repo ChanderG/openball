@@ -7,6 +7,7 @@ using namespace std;
 #include"items.h"
 #include"tools.h"
 #include"io.h"
+#include"menus.h"
 
 // Main Paddle 
 paddle p(-0.15, -0.9, 0.15, -0.95);
@@ -28,7 +29,7 @@ int lives = 3;
 
 //global state indicator
 //0 implies in paused state
-int state = 0;
+int state = 1;
 
 //game screen graphics
 void displayMe(void)
@@ -36,14 +37,18 @@ void displayMe(void)
   glClear(GL_COLOR_BUFFER_BIT);
 
   displayScore(lives);  
-
-  p.movePaddle(mouseX,0);
   p.drawPaddle();
-
-  b.moveBall(p, &m, lives);
   b.drawBall();
-
   m.drawMap();
+
+  //if paused aka main menu is displayed
+  if(state == 0){
+    mainMenu(); 
+  }
+  else{
+    p.movePaddle(mouseX,0);
+    b.moveBall(p, &m, lives);
+  }
 
   glFlush();
 }
