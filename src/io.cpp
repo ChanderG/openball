@@ -13,7 +13,7 @@ extern int state;
 void handleMouseClick(int button, int state, int x, int y){
   if(button ==  GLUT_LEFT_BUTTON){
     //handling left clicks
-    //for both states
+    //for both PUSHDOWN and RELEASE
     b.launchBall();
   }
 

@@ -29,12 +29,28 @@ int lives = 3;
 
 //global state indicator
 //0 implies in paused state
+//1 implies in ongoing game state
+//2 implies current game over and success
+//3 implies current game over and failure
 int state = 1;
 
 //game screen graphics
 void displayMe(void)
 {
   glClear(GL_COLOR_BUFFER_BIT);
+  
+  /*BACKGROUND COLOR
+  glBegin(GL_QUADS);
+  glColor4f(0.5f, 0.0f, 1.0f, 0.7); // (0.5, 0, 1) is half red and full blue, giving dark purple.
+  //menu rectangle
+  glVertex2f(-1, -1);
+  glVertex2f(-1, 1);
+  glVertex2f(1, 1);
+  glVertex2f(1, -1);
+  glEnd();
+  */
+
+  glColor4f(1,1,1,0.5);
 
   displayScore(lives);  
   p.drawPaddle();
@@ -68,9 +84,10 @@ int main(int argc, char** argv)
   glutInitWindowSize(WIDTH, HEIGHT);
   glutInitWindowPosition(0, 0);
   glutCreateWindow("OpenBall");
-
+  glClearColor(0.0,0.0,0.0,0.0);
   //hide cursor
   glutSetCursor(GLUT_CURSOR_NONE);
+
 
   //map formula hardcoded here for now  
   for(int i = 0;i < 10;i++)
