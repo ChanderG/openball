@@ -32,6 +32,9 @@ int lives = 3;
 //3 implies current game over and failure
 int state = GAME_ACTIVE;
 
+//menu grouping handler
+extern menuGroup mainMg;
+
 //game screen graphics
 void displayMe(void)
 {
@@ -91,6 +94,10 @@ int main(int argc, char** argv)
       else main_map[i][j] = 0;
 
   m.createMap(main_map,0.2, 0.1);
+
+  //dumb way to load the group menu option
+  //now works only because there is only one menu
+  mainMg.setMenuGroup(mainmenusSize);
 
   glutDisplayFunc(displayMe);
   glutIdleFunc(displayMe);
