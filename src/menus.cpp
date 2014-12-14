@@ -4,6 +4,9 @@
 #include<GL/freeglut.h>
 #include<string>
 
+void menuItem(){
+};
+
 void mainMenu(){
   //draw rectangle for menu - centered
   

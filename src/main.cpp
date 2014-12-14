@@ -28,11 +28,9 @@ map m;
 int lives = 3;
 
 //global state indicator
-//0 implies in paused state
-//1 implies in ongoing game state
 //2 implies current game over and success
 //3 implies current game over and failure
-int state = 1;
+int state = GAME_ACTIVE;
 
 //game screen graphics
 void displayMe(void)
@@ -58,7 +56,7 @@ void displayMe(void)
   m.drawMap();
 
   //if paused aka main menu is displayed
-  if(state == 0){
+  if(state == GAME_PAUSED){
     mainMenu(); 
   }
   else{
@@ -69,9 +67,6 @@ void displayMe(void)
   glFlush();
 }
 
-void getMouseCoordinates(int x, int y){
-  mouseX = x-WIDTH/2;
-}
 
 void timer(int t){
   glutTimerFunc(1, timer, 1);
@@ -101,7 +96,7 @@ int main(int argc, char** argv)
   glutIdleFunc(displayMe);
   glutTimerFunc(1, timer, 1);
 
-  glutPassiveMotionFunc(getMouseCoordinates);
+  glutPassiveMotionFunc(handleMouseMovements);
   glutMouseFunc(handleMouseClick);
   glutKeyboardFunc(handleKeyboardInputs);
 
