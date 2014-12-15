@@ -2,9 +2,10 @@
 #include"main.h"
 
 #include<GL/freeglut.h>
-#include<string>
+#include<iostream>
 
 menuGroup mainMg;
+extern int state;
 
 void menuGroup :: setMenuGroup(int nos){
   no = nos;
@@ -24,6 +25,24 @@ void menuGroup :: moveDown(){
   if(curr == no) curr = 1; 
   else curr++;
 } 
+
+void quitGame(){
+  cout << "Quiting game..." << endl; 
+  exit(1);
+}
+
+void handleMenuSelection(){
+  if(state == GAME_PAUSED){
+    switch(mainMg.getSelected()){
+      case 3: //implying quit
+              quitGame();  
+	      break;
+      default: //anything else
+               break;
+    }
+  }
+}
+
 
 
 //helper function for drawing boxes

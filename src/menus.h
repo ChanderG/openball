@@ -3,6 +3,7 @@
 using namespace std;
 
 void mainMenu();
+void handleMenuSelection();
 
 //very inefficient
 const int mainmenusSize = 3;

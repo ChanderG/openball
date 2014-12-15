@@ -25,7 +25,7 @@ void handleMouseClick(int button, int state, int x, int y){
 void handleKeyboardInputs(unsigned char key, int x, int y){
   if(state == GAME_ACTIVE){
     switch(key){
-      case MAIN_MENU: //escape key => display main menu
+      case MAIN_MENU_KEY: //escape key => display main menu
                       state = GAME_PAUSED;
                       break; 
       default: //others
@@ -34,7 +34,11 @@ void handleKeyboardInputs(unsigned char key, int x, int y){
   }
   else if(state == GAME_PAUSED){
     switch(key){
-      case MAIN_MENU: //escape key => display main menu
+      case MAIN_MENU_KEY: //display main menu
+                      state = GAME_ACTIVE;
+                      break; 
+      case SELECT_KEY: //select the current option
+                      handleMenuSelection();
                       state = GAME_ACTIVE;
                       break; 
       default: //others
