@@ -16,14 +16,15 @@ int menuGroup :: getSelected(){
 }
 
 void menuGroup ::  moveUp(){
+  if(curr == 1) curr = no; 
+  else curr--;
+}
+
+void menuGroup :: moveDown(){
   if(curr == no) curr = 1; 
   else curr++;
 } 
 
-void menuGroup :: moveDown(){
-  if(curr == 1) curr = no; 
-  else curr--;
-}
 
 //helper function for drawing boxes
 void menuItemBox(float lx, float ly, float l, float h){
@@ -86,7 +87,7 @@ void mainMenu(){
       glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, mainmenus[i-1][j]);
     }
     if(mainMg.getSelected() == i)
-      menuItemBox(lx-0.025, ly-(i)*(0.1) + 0.025, 0.45, 0.1); //0.0875);   
+      menuItemBox(lx-0.025, ly-(i-1)*(0.15) + 0.075, 0.45, 0.1); //0.0875);   
   }
 
 }

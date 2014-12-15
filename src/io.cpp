@@ -10,6 +10,7 @@
 extern ball b;
 extern int state;
 extern int mouseX;
+extern menuGroup mainMg;
 
 void handleMouseClick(int button, int state, int x, int y){
   if(button ==  GLUT_LEFT_BUTTON){
@@ -43,6 +44,19 @@ void handleKeyboardInputs(unsigned char key, int x, int y){
   else;
 
   return;
+}
+
+void handleSpecialKeyboardInputs(int key, int x, int y){
+  if(state == GAME_PAUSED){
+    switch(key){
+      case GLUT_KEY_UP: //move up
+                        mainMg.moveUp();                        
+			break;
+      case GLUT_KEY_DOWN: //move up
+                        mainMg.moveDown();                        
+			break;
+    }
+  }
 }
 
 void handleMouseMovements(int x, int y){
