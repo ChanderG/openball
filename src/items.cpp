@@ -61,11 +61,13 @@ ball :: ball(float cX, float cY, float hs){
   initCy = centerY = cY;
   halfside = hs;
   
+  //good for single buffering
   //initVelX = velX = 0.001;
   //initVelY = velY = 0.001;
 
-  initVelX = 0.001;
-  initVelY = 0.001;
+  //for double buffering
+  initVelX = 0.01;
+  initVelY = 0.01;
 }
 
 void ball :: drawBall(){

@@ -38,7 +38,7 @@ extern menuGroup mainMg;
 //game screen graphics
 void displayMe(void)
 {
-  glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   
   /*BACKGROUND COLOR
   glBegin(GL_QUADS);
@@ -67,7 +67,8 @@ void displayMe(void)
     b.moveBall(p, &m, lives);
   }
 
-  glFlush();
+  //glFlush();
+  glutSwapBuffers();
 }
 
 
@@ -78,7 +79,7 @@ void timer(int t){
 int main(int argc, char** argv)
 {
   glutInit(&argc, argv);
-  glutInitDisplayMode(GLUT_SINGLE);
+  glutInitDisplayMode(GLUT_DOUBLE|GLUT_ALPHA);
   glutInitWindowSize(WIDTH, HEIGHT);
   glutInitWindowPosition(0, 0);
   glutCreateWindow("OpenBall");
