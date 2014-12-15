@@ -59,15 +59,23 @@ void displayMe(void)
   m.drawMap();
 
   //if paused aka main menu is displayed
-  if(state == GAME_PAUSED){
-    mainMenu(); 
-  }
-  else{
-    p.movePaddle(mouseX,0);
-    b.moveBall(p, &m, lives);
+  switch(state){
+    case GAME_ACTIVE: //main mode
+		      p.movePaddle(mouseX,0);
+		      b.moveBall(p, &m, lives);
+		      break;
+    case GAME_PAUSED: //main menu state	      
+		      mainMenu(); 
+                      break; 
+    case GAME_ABOUT:  //about screen		       
+                      showAboutScreen();
+		      break;
+    default: // cannot be here 
+             cout << "Fatal error" << endl;
+	     exit(0);
+             break; 
   }
 
-  //glFlush();
   glutSwapBuffers();
 }
 
