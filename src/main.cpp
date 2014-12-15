@@ -25,7 +25,7 @@ int main_map[10][10];
 map m;    
 
 //lives left
-int lives = 3;
+int lives = MAX_LIVES;
 
 //global state indicator
 //2 implies current game over and success

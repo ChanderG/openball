@@ -6,8 +6,10 @@ void mainMenu();
 void handleMenuSelection();
 
 //very inefficient
-const int mainmenusSize = 3;
-const string mainmenus[] = {"New Map", "Randomized Map", "Quit"};
+const int mainmenusSize = 5;
+const int quitGameNo = 5;
+const int loadRandomMapNo = 2;
+const string mainmenus[] = {"New Map", "Load Random Map", "Instructions", "About", "Quit"};
 
 
 const int maxGroupSize = 10;

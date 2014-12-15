@@ -16,6 +16,8 @@ class paddle{
   void drawPaddle();
   void movePaddle(int, int);
 
+  void resetPaddle();
+
   float getLeft();
   float getRight();
   float getTop();

@@ -36,7 +36,11 @@ void paddle :: movePaddle(int x, int y){
 
   return;
 }
-
+ 
+void paddle :: resetPaddle(){  
+  left = -length/2;  
+  right = length/2;  
+}
 
 float paddle ::  getLeft(){
   return left;

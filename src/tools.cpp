@@ -4,6 +4,13 @@
 #include<GL/freeglut.h>
 #include<string>
 
+#include"main.h"
+#include"items.h"
+
+extern ball b;
+extern paddle p;
+extern int lives;
+
 void displayScore(int lives){
   int x = -1;
   int y = -1;
@@ -18,4 +25,10 @@ void displayScore(int lives){
     glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, msg[i]);
   }
   return;
+}
+
+void resetGame(){
+  b.resetBall();    
+  p.resetPaddle();
+  lives = MAX_LIVES;
 }

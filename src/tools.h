@@ -3,4 +3,5 @@
 //display number of lives left
 void displayScore(int lives);
 
-//void launchBall();
+//for starting a new level
+void resetGame();

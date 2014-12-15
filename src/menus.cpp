@@ -1,11 +1,15 @@
 #include"menus.h"
 #include"main.h"
+#include"items.h"
+#include"tools.h"
 
 #include<GL/freeglut.h>
 #include<iostream>
+#include<cstdlib>
 
 menuGroup mainMg;
 extern int state;
+extern map m;
 
 void menuGroup :: setMenuGroup(int nos){
   no = nos;
@@ -31,11 +35,29 @@ void quitGame(){
   exit(1);
 }
 
+void loadRandomMap(){
+  resetGame();
+  srand(time(NULL));
+
+  int main_map[10][10];
+
+  for(int i = 0;i < 10;i++)
+    for(int j = 0;j < 10;j++){
+      main_map[i][j] = rand()%2;   
+      
+    }  
+
+  m.createMap(main_map,0.2, 0.1);
+}
+
 void handleMenuSelection(){
   if(state == GAME_PAUSED){
     switch(mainMg.getSelected()){
-      case 3: //implying quit
+      case quitGameNo: //implying quit
               quitGame();  
+	      break;
+      case loadRandomMapNo: //implying quit
+              loadRandomMap();  
 	      break;
       default: //anything else
                break;
@@ -65,9 +87,9 @@ void menuItemBox(float lx, float ly, float l, float h){
 void mainMenu(){
   //draw rectangle for menu - centered
   float lx = -0.25;  
-  float ly = 0.25;  
+  float ly = 0.50;  
   float l = 0.5;
-  float h = 0.5;
+  float h = 0.75;
 
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
